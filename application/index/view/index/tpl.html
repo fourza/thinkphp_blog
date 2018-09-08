@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>模板引擎</title>
+</head>
+<body>
+
+	<h1>模板展示</h1>
+
+	{{$hi}}<br/>
+	{{$user['username']}}-{{$user.balance}}<br/>
+	{{$obj->username}}-{{$obj:balance}}<br/>
+	{{$hi|strtoupper}}-{{$hi|strtolower}}<br/>
+	{{$user.created|date="Y-m-d H:i:s",###}}<br/>
+	{{$user.username|mb_substr=1,2}}<br/>
+	{{// 这里验证管道的写法, 你看不见我 }}
+	{{/* 你也看不见我 */}}
+	{{$hi|strtoupper|substr=0,5}}<br/>
+	{{literal}}
+    {{$hi}}
+	{{/literal}}
+	<hr>
+
+	<h3>保留变量</h3>
+	{{$Think.const.APP_PATH}}<br/>
+	{{$Think.CORE_PATH}}<br/>
+	{{// 当URL地址后有参数时才能访问get}}
+	{{// url地址?c=xxxx}}
+	{{$Think.get.c}}<br/>
+	{{$Think.config.default_controller}}<br/>
+	当前控制器: {{$Request.controller}}<br/>
+	当前方法名: {{$Request.action}}<br/>
+	{{$Think.config.app_debug ? "调试模式已开启" : "调试模式已关闭"}}<br/>
+	分页中单页记录数: {{$Think.config.paginate.list_rows}}<br/>
+
+	<h3>流程控制语句</h3>
+	{{if condition="$Think.config.app_debug"}}
+	调试模式已开启
+	{{else /}}
+	调试模式已关闭
+	{{/if}}
+
+	<ul>
+	{{foreach $blogs as $b}}
+		<li>{{$b.title}}</li>
+	{{/foreach}}
+	</ul>
+
+	{{for start="0" end="10" step="2"}}
+		{{$i}}
+	{{/for}}
+	
+	<br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
+</html>

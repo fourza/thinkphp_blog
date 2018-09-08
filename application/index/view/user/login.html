@@ -1,0 +1,78 @@
+{{extend name="public/base"}}
+
+{{block name="left"}}{{/block}}
+{{block name="main"}}
+  <div class="col-md-8">
+	<h1>用户登录</h1>
+	<form action="{{:url('index/user/doLogin')}}" method="post" class="form-horizontal">
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">用户名:</label>
+      </div>
+      <div class="col-md-5">
+        <input type="text" name="username" id="username" value="" class="form-control">
+      </div>
+      <div class="col-md-5">
+        <span class="help-block">用户名的长度是2-100位</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">密码:</label>
+      </div>
+      <div class="col-md-5">
+        <input type="password" name="password" id="password" value="" class="form-control">
+      </div>
+      <div class="col-md-5">
+        <span class="help-block">请输入密码</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <label class="control-label">验证码:</label>
+      </div>
+      <div class="col-md-5">
+        <input type="text" name="captcha" value="" class="form-control">
+      </div>
+      <div class="col-md-5">
+        <img src="{{:captcha_src()}}" alt="captcha" id="captcha" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-10 col-md-offset-2">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="" id="" value=""> 七天免密登录
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-10 col-md-offset-2">
+        <input type="submit" value="登录" class="btn btn-primary">
+        <input type="reset" value="取消" class="btn btn-default">
+      </div>
+      
+    </div>
+  	</form>
+  </div>
+{{/block}}
+{{block name="right"}}
+  <div class="col-md-4">
+  	<h1>这里是右边栏</h1>
+  </div>
+{{/block}}
+
+{{block name="js"}}
+<script type="text/javascript">
+  var c = document.getElementById('captcha');
+  // 对象.onclick = function(){};
+  c.onclick = function(){
+    // 更新img标签的src属性
+    this.src = "{{:captcha_src()}}?rand="+Math.random();
+  }
+</script>
+{{/block}}

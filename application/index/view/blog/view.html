@@ -1,0 +1,43 @@
+{{extend name="public/base"}}
+
+{{block name="main"}}
+<dir class="col-md-8">
+  <div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			{{$data.title}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		{{if condition="$data['image']"}}
+		<img src="__STATIC__/upload/{{$data.image}}" class="img-responsive">
+		{{/if}}
+		{{$data.content|nl2br}}
+	</div>
+	<div class="panel-footer">
+		作者:{{$data->author->username}} 创建时间: {{$data.created}} 浏览量:({{$data.views}})
+	</div>
+  </div>
+
+  {{// 展示当前博客的评论 }}
+  {{volist name="comments" id="vo"}}
+  <div class="panel panel-info">
+	<div class="panel-body">
+		{{$vo.content}}
+	</div>
+	<div class="panel-footer">
+		作者: {{$vo->author->username}} 评论时间: {{$vo.created}}
+	</div>
+  </div>
+  {{/volist}}
+  {{$comments->render()}}
+
+</dir>
+{{/block}}
+{{block name="right"}}
+<dir class="col-md-4">
+	{{include file="blog/right"}}
+</dir>
+{{/block}}
+		
+

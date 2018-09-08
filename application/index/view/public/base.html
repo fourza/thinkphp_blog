@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>模板</title>
+    <!-- Bootstrap -->
+    <link href="__STATIC__/bootstrap/css/bootstrap.css" rel="stylesheet">
+    {{block name="css"}}{{/block}}
+  </head>
+  <body>
+
+    <div class="container">
+      
+      {{include file="public/header"}}
+
+      <div class="row">
+      {{block name="left"}}{{/block}}
+      {{block name="main"}}{{/block}}
+      {{block name="right"}}{{/block}}
+
+      {{include file="public/footer"}}
+      </div>
+      
+    </div>
+
+    <script src="__JS__/jquery-3.3.1.js"></script>
+    <script src="__STATIC__/bootstrap/js/bootstrap.js"></script>
+    {{block name="js"}}{{/block}}
+  </body>
+</html>
